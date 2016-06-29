@@ -1,9 +1,9 @@
 sudo su
 # symfony
-curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+curl -Ls https://symfony.com/installer -o /usr/local/bin/symfony
 chmod a+x /usr/local/bin/symfony
 # composer
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -s https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 composer self-update
 # web directory
 mkdir -p www
