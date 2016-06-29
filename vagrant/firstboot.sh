@@ -1,6 +1,4 @@
 sudo su
-# update the machine
-apt-get update
 # symfony
 if ! hash symfony 2>/dev/null; then
     curl -Ls https://symfony.com/installer -o /usr/local/bin/symfony
@@ -10,7 +8,6 @@ fi
 if ! hash composer 2>/dev/null; then
     curl -s https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 fi
-composer self-update
 # web directory
 mkdir -p www
 cd www
