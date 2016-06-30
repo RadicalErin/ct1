@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+    ServerAdmin erin@over-yonder.com
+    ServerName ct1.loc
+    ServerAlias www.ct1.loc
+
+    DocumentRoot /home/vagrant/www/ct1/src/ct1/web
+    <Directory /home/vagrant/www/ct1/src/ct1/web>
+        AllowOverride All
+        Order Allow,Deny
+        Allow from All
+        Require all granted
+    </Directory>
+
+    # uncomment the following lines if you install assets as symlinks
+    # or run into problems when compiling LESS/Sass/CoffeScript assets
+    # <Directory /var/www/project>
+    #     Options FollowSymlinks
+    # </Directory>
+
+    ErrorLog /var/log/apache2/ct1_error.log
+    CustomLog /var/log/apache2/ct1_access.log combined
+</VirtualHost>
