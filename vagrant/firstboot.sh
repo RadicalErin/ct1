@@ -8,6 +8,9 @@ fi
 if ! hash composer 2>/dev/null; then
     curl -s https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 fi
+composer require symfony/assetic-bundle
+composer update nothing
+composer install
 # web directory
 mkdir -p www
 cd www
