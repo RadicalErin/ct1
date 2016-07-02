@@ -13,6 +13,6 @@ class CodeTestController extends Controller
      */
     public function showAction(){
         $number = rand(0, 100);
-        return new Response("test");
+        return $this->render("@App/index.html.twig");
     }
 }
