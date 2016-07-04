@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User extends Base
+class User extends BaseEntity
 {
     /**
      * @ORM\Column(type="string", length=128)
