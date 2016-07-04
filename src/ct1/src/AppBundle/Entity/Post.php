@@ -5,8 +5,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="posts")
+ * @ORM\Table(name="post")
  */
-class Posts
+class Post extends Base
 {
 }
