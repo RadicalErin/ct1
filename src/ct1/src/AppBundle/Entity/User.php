@@ -7,15 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User
+class User extends Base
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @ORM\Column(type="string", length=128)
      */
@@ -25,17 +18,6 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     public function getName()
     {
