@@ -16,6 +16,7 @@ mkdir -p www
 cd www
 # lamp server
 apt-get -y --force-yes install lamp-server^
+apt-get install php5-curl
 # make sure we own the vagrant files in the shared folder
 chown -R vagrant:vagrant .*
 # set php time zone here
