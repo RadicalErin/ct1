@@ -1,3 +1,6 @@
 #Vagrant#
 #########
 vagrant/.vagrant/*
+#SQLite DB#
+###########
+db.sqlite
