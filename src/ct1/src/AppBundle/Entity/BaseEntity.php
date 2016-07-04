@@ -46,7 +46,7 @@ abstract class BaseEntity
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt()
     {
         $this->createdAt = new \DateTime();
         $this->setUpdatedAt();
@@ -61,7 +61,7 @@ abstract class BaseEntity
     /**
      * @ORM\PreUpdate
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
         return $this;
