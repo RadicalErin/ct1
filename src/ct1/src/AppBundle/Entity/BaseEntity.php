@@ -5,6 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
 
+/**
+ * @ORM\HasLifecycleCallbacks()
+ */
 abstract class BaseEntity
 {
     /**
@@ -15,14 +18,14 @@ abstract class BaseEntity
     protected $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    protected $created;
+    protected $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    protected $modified;
+    protected $updatedAt;
 
     public function getId()
     {
@@ -35,26 +38,38 @@ abstract class BaseEntity
         return $this;
     }
 
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
-    public function setCreated($created)
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt($createdAt)
     {
-        $this->created = $created;
+        $this->createdAt = new \DateTime();
+        $this->setUpdatedAt();
         return $this;
     }
 
-    public function getModified()
+    public function getUpdatedAt()
     {
-        return $this->modified;
+        return $this->updatedAt;
     }
 
-    public function setModified($modified)
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt($updatedAt)
     {
-        $this->modified = $modified;
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 
+    public function touch()
+    {
+        $this->setUpdatedAt();
+        return $this;
+    }
 }
