@@ -17,12 +17,12 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", Length=128)
+     * @ORM\Column(type="string", length=128)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", Length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -53,7 +53,7 @@ class User
         return $this->password;
     }
 
-    public function setPassword(password)
+    public function setPassword($password)
     {
         $this->password = $password;
         return $this;
