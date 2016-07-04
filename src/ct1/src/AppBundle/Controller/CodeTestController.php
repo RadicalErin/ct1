@@ -12,7 +12,6 @@ class CodeTestController extends Controller
      * @Route("/test")
      */
     public function showAction(){
-        $number = rand(0, 100);
         return $this->render("@App/index.html.twig");
     }
 }
