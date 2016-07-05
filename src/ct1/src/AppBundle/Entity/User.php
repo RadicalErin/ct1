@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as FormValidator;
 
 /**
  * @ORM\Entity
@@ -11,11 +12,13 @@ class User extends BaseEntity
 {
     /**
      * @ORM\Column(type="string", length=128)
+     * @FormValidator\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @FormValidator\NotBlank()
      */
     private $password;
 

@@ -11,6 +11,7 @@
     <div class="right-box">
         {% if authen_form %}
             {{ form_start(authen_form) }}
+            {{ form_widget(authen_form) }}
             {{ form_end(authen_form) }}
         {% endif %}
     </div>
