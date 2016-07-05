@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {% stylesheets '@AppBundle/Resources/public/css/main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
 {% block body %}
     <div class="header">
         <h1>This is not the greatest page in the world. This is just a tribute.</h1>
