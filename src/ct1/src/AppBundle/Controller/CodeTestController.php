@@ -14,7 +14,7 @@ class CodeTestController extends Controller
      * @Route("/test")
      */
     public function showAction(){
-        $formUser = new User();
+        $formUser = new User(null, null, null, []);
         $authenForm = $this->createForm(AuthenticationType::class, $formUser);
 
         return $this->render(
