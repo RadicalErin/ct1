@@ -1,4 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    This is not the greatest page in the world. This is just a tribute.
+    <div class="header">
+        <h1>This is not the greatest page in the world. This is just a tribute.</h1>
+    </div>
+    {# posts #}
+    <div class="left-box">
+        posts go here
+    </div>
+    {# authentication #}
+    <div class="right-box">
+        {% if authen_form %}
+            {{ form_start(authen_form) }}
+            {{ form_end(authen_form) }}
+        {% endif %}
+    </div>
 {% endblock %}
