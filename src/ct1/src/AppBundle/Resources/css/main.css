@@ -1,0 +1,9 @@
+.left-box{
+    float: left;
+    width: 60%;
+    margin-left: 5%;
+}
+.right-box{
+    float: right;
+    width: 30%;
+}
