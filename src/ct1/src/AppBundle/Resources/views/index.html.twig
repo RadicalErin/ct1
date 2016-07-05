@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    {% stylesheets '@AppBundle/Resources/public/css/main.css' %}
+    {% stylesheets
+        '@AppBundle/Resources/public/css/main.css'
+    %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
