@@ -14,6 +14,7 @@ class AuthenticationType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('password', PasswordType::class)
+            ->add('Register', SubmitType::class)
             ->add('Login', SubmitType::class);
     }
 }
