@@ -4,9 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b58b164e01ff5cc579bcb1fbb568dc69",
-    "content-hash": "e146bfa4d6ed188cb1fcd4fdc1e522e6",
+    "hash": "abdc6e420368e2a8634f67253c3b50b4",
+    "content-hash": "c291f422b066950c4e6e628434a5e6d8",
     "packages": [
+        {
+            "name": "besimple/soap-wsdl",
+            "version": "v0.2.6",
+            "target-dir": "BeSimple/SoapWsdl",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapWsdl.git",
+                "reference": "8c1063fecc329066d90d0577347d9523afe65791"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapWsdl/zipball/8c1063fecc329066d90d0577347d9523afe65791",
+                "reference": "8c1063fecc329066d90d0577347d9523afe65791",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapWsdl": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                },
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com"
+                }
+            ],
+            "description": "Build and consume SOAP Common based web services",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapWsdl",
+            "keywords": [
+                "soap",
+                "soap-wsdl"
+            ],
+            "time": "2014-08-14 11:39:12"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
