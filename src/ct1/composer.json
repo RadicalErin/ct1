@@ -31,7 +31,8 @@
         "symfony/assetic-bundle": "^2.8",
         "friendsofsymfony/rest-bundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^1.1",
-        "besimple/soap-wsdl": "^0.2.6"
+        "besimple/soap-wsdl": "^0.2.6",
+        "zendframework/zend-soap": "^2.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
