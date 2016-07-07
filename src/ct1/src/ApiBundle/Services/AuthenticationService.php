@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Services;
+namespace ApiBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\User;
