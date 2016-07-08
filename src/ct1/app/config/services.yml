@@ -8,5 +8,5 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     authentication_service:
-        class: AppBundle\Services\AuthenticationService
+        class: ApiBundle\Services\AuthenticationService
         arguments: [ "@doctrine.orm.entity_manager" ]
