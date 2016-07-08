@@ -10,11 +10,18 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 class AuthenticationService
 {
-    public function __construct(EntityManager $em)
+    protected $em;
+
+    public function __construct(EntityManager $entityManager)
     {
-        $this->em = $em;
+        $this->em = $entityManager;
     }
 
+    /**
+     * @param string $submittedName
+     * @param string $submittedPassword
+     * @return string
+     */
     public function logIn($submittedName, $submittedPassword)
     {
         $user = $this->em->getRepository("AppBundle:User")->loadUserByUsername($submittedName);
@@ -28,12 +35,21 @@ class AuthenticationService
         }
     }
 
+    /**
+     * @param string $userName
+     * @return boolean
+     */
     public function logOut($userName)
     {
         $this->container->get('security.token_storage')->setToken(null);
         return true;
     }
 
+    /**
+     * @param string $submittedName
+     * @param string $submittedPassword
+     * @return boolean
+     */
     public function newUser($submittedName, $submittedPassword)
     {
         //fail if exists

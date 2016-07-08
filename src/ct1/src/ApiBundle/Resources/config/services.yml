@@ -1,4 +1,4 @@
 services:
-#    api.example:
-#        class: ApiBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    authentication_service:
+        class: ApiBundle\Services\AuthenticationService
+        arguments: [ "@doctrine.orm.entity_manager" ]

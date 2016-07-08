@@ -16,11 +16,10 @@ class SoapController extends Controller
 
     public function checkAction()
     {
-        if(isset($_GET['wsdl'])) {
-            return $this->handleWSDL($this->generateUrl('acme_api_soap_check', array(), true), 'check_service'); 
-        } else {
-            return $this->handleSOAP($this->generateUrl('acme_api_soap_check', array(), true), 'check_service'); 
-        }
+        return
+            (isset($_GET['wsdl'])) ?
+            $this->handleWSDL($this->generateUrl('api_soap_check', array(), true), 'authentication_service'):
+            $this->handleSOAP($this->generateUrl('api_soap_check', array(), true), 'authentication_service');
     }
 
     /**
@@ -61,7 +60,10 @@ class SoapController extends Controller
 
         // Response
         $response = new Response();
-        $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
+        $response->headers->set(
+            'Content-Type',
+            'text/xml; charset=ISO-8859-1'
+        );
 
         ob_start();
         // Handle Soap
