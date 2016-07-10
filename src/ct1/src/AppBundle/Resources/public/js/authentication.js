@@ -1,16 +1,30 @@
-var authenticationManager = function(){
-    this.init = function(){
+var authenticationManager = {
+    init: function(){
         this.config = {
             user: null,
             csrf: null
         }
         this.run();
-    }
-    this.run = function(){
+    },
+    run: function(){
         if(this.config.user){
-            //handle logged in user setup
+            this.authenticatedSetup();
         } else {
-            //handle unauthenticated setup
+            this.unauthenticatedSetup();
         }
+    },
+    unauthenticatedSetup: function(){
+        $('#authentication_Register').on("click", function(e){
+            console.log("register");
+        });
+        $('#authentication_Login').on("click", function(e){
+            console.log("login");
+        });
+    },
+    authenticatedSetup: function(){
     }
 }
+
+$(document).ready(function(){
+    authenticationManager.init();
+});
