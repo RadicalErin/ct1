@@ -19,7 +19,7 @@ class CodeTestController extends Controller
         $authenForm->handleRequest($request);
 
         if($authenForm->isSubmitted() && $authenForm->isValid()){
-            return "potato";
+            return new Response("potato");
         }
 
         return $this->render(
