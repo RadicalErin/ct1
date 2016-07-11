@@ -13,9 +13,14 @@ class CodeTestController extends Controller
     /**
      * @Route("/test")
      */
-    public function showAction(){
+    public function showAction(Request $request){
         $formUser = new User(null, null, null, []);
         $authenForm = $this->createForm(AuthenticationType::class, $formUser);
+        $authenForm->handleRequest($request);
+
+        if($authenForm->isSubmitted() && $authenForm->isValid()){
+            return "potato";
+        }
 
         return $this->render(
             "@App/index.html.twig",
