@@ -9,16 +9,13 @@
         </title>
         {% block stylesheets %}
         {% endblock %}
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            {% javascripts
-                '../app/Resources/public/js/jquery-3.0.0.min.js'
-            %}
-                <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+        {% block body %}
         {% endblock %}
     </body>
 </html>

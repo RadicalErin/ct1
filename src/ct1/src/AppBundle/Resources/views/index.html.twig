@@ -6,6 +6,14 @@
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@AppBundle/Resources/public/js/authentication.js'
+    %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
 {% block body %}
     <div class="header">
         <h1>This is not the greatest page in the world. This is just a tribute.</h1>
