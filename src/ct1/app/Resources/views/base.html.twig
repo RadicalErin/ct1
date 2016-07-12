@@ -10,7 +10,13 @@
         {% block stylesheets %}
         {% endblock %}
         {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+            {% javascripts
+                '../app/Resources/public/js/jquery-3.0.0.min.js'
+                '../app/Resources/public/js/xml2json.js'
+                '../app/Resources/public/js/jquery.soap.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
