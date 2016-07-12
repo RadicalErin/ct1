@@ -4,6 +4,7 @@ namespace ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Zend\Soap;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SoapController extends Controller
 {
@@ -19,7 +20,7 @@ class SoapController extends Controller
         return
             (isset($_GET['wsdl'])) ?
             $this->handleWSDL($this->generateUrl('api_soap_check', array(), true), 'authentication_service'):
-            $this->handleSOAP($this->generateUrl('api_soap_check', array(), true), 'authentication_service');
+            $this->handleSOAP($this->generateUrl('api_soap_check', array(), UrlGeneratorInterface::ABSOLUTE_URL), 'authentication_service');
     }
 
     /**

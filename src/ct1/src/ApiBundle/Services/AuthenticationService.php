@@ -52,6 +52,7 @@ class AuthenticationService
      */
     public function newUser($submittedName, $submittedPassword)
     {
+        $this->get("logger")->info("newUser has been called");
         //fail if exists
         if($this->em->getRepository("AppBundle:User")->findOneBy(['name' => $submittedName]))
         {

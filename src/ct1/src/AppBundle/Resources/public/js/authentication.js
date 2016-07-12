@@ -19,7 +19,7 @@ var authenticationManager = {
             authenticationManager.checkFormReady(
                 function(){
                     $.soap({
-                        url: 'http://ct1.loc/app.php/api/soap/check?wsdl',
+                        url: 'http://ct1.loc/app.php/api/soap/check',
                         method: 'newUser',
                         SOAPAction: 'http://ct1.loc/app.php/api/soap/check#newUser',
                         namespaceQualifier: 'tns',
