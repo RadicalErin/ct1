@@ -18,10 +18,23 @@ var authenticationManager = {
             e.preventDefault();
             authenticationManager.checkFormReady(
                 function(){
-                    console.log("ready");
+                    $.soap({
+                        url: 'http://ct1.loc/app.php/api/soap/check?wsdl',
+                        method: 'newUser',
+                        SOAPAction: 'http://ct1.loc/app.php/api/soap/check#newUser',
+                        namespaceQualifier: 'tns',
+                        namespaceURL: 'http://ct1.loc/app.php/api/soap/check',
+                        appendMethodToURL: false,
+                        data: {
+                            submittedName: $('#authentication_username').val(),
+                            submittedPassword: $('#authentication_password').val()
+                        },
+                        success: authenticationManager.registerSuccess,
+                        error: authenticationManager.registerError
+                    });
                 },
                 function(){
-                    console.log("not ready");
+                    alert("Fill out the form before submitting");
                 }
             );
             return false;
@@ -50,6 +63,18 @@ var authenticationManager = {
         } else {
             fail();
         }
+    },
+    registerSuccess: function(soapResponse){
+        console.log("success");
+    },
+    registerError: function(soapResponse){
+        console.log("error");
+    },
+    loginSuccess: function(soapResponse){
+        console.log("success");
+    },
+    loginError: function(soapResponse){
+        console.log("error");
     }
 }
 
