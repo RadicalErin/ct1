@@ -15,6 +15,7 @@ var authenticationManager = {
     },
     unauthenticatedSetup: function(){
         $('#authentication_Register').on("click", function(e){
+            e.preventDefault();
             authenticationManager.checkFormReady(
                 function(){
                     console.log("ready");
@@ -23,10 +24,10 @@ var authenticationManager = {
                     console.log("not ready");
                 }
             );
-            $(e).preventDefault();
             return false;
         });
         $('#authentication_Login').on("click", function(e){
+            e.preventDefault();
             authenticationManager.checkFormReady(
                 function(){
                     console.log("ready");
@@ -35,7 +36,6 @@ var authenticationManager = {
                     console.log("not ready");
                 }
             );
-            $(e).preventDefault();
             return false;
         });
     },
