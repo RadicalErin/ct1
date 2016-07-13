@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class AuthenticationService
 {
@@ -54,7 +55,7 @@ class AuthenticationService
     public function newUser($submittedName, $submittedPassword)
     {
         if($results =  $this->em->getRepository("AppBundle:User")->findBy(array('username' => $submittedName))){
-            //
+            return trigger_error("The username provided already exists", E_USER_ERROR);
         }
         try {
             $newUser = new User();
@@ -64,7 +65,7 @@ class AuthenticationService
             $this->em->persist($newUser);
             $this->em->flush();
         } catch (\Exception $e) {
-            echo($e); die();
+            return trigger_error("Could not create new user", E_USER_ERROR);
         }
         return true;
     }
