@@ -30,6 +30,7 @@ class User extends BaseEntity implements UserInterface, EquatableInterface
 
     public function __construct($username, $password, $salt, array $roles)
     {
+        parent::__construct();
         $this->username = $username;
         $this->password = $password;
         $this->salt = $salt;

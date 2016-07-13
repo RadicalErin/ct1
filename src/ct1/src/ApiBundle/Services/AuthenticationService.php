@@ -4,6 +4,7 @@ namespace ApiBundle\Services;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -52,24 +53,19 @@ class AuthenticationService
      */
     public function newUser($submittedName, $submittedPassword)
     {
-        $this->get("logger")->info("newUser has been called");
-        //fail if exists
-        if($this->em->getRepository("AppBundle:User")->findOneBy(['name' => $submittedName]))
-        {
-            return false;
+        if($results =  $this->em->getRepository("AppBundle:User")->findBy(array('username' => $submittedName))){
+            //
         }
-        //create new user object
-        $newUser = new User();
-        $newUser
-            ->setName($submittedName)
-            ->setPassword($this->container->get('security.password_encoder')->encodePassword($newUser, $submittedPassword));
-        if($this->container->get('security.password_encoder')->isPasswordValid($newUser, $submittedPassword))
-        {
-            //save if no issues
+        try {
+            $newUser = new User();
+            $newUser
+                ->setUsername($submittedName)
+                ->setPassword($submittedPassword);
             $this->em->persist($newUser);
             $this->em->flush();
-            return true;
+        } catch (\Exception $e) {
+            echo($e); die();
         }
-        return false;
+        return true;
     }
 }

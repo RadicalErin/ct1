@@ -4,9 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use Doctrine\ORM\Events;
 
 /**
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 abstract class BaseEntity
 {
@@ -27,6 +29,10 @@ abstract class BaseEntity
      */
     protected $updatedAt;
 
+    public function __construct(){
+        $this->setUpdatedAt();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -43,27 +49,20 @@ abstract class BaseEntity
         return $this->createdAt;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-        $this->setUpdatedAt();
-        return $this;
-    }
-
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
     /**
+     * @ORM\PrePersist
      * @ORM\PreUpdate
+     * @ORM\PreFlush
      */
     public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
+        $this->createdAt = $this->createdAt || $this->updatedAt;
         return $this;
     }
 
