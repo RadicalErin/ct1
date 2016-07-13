@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
 use Doctrine\ORM\Events;
+use \DateTime;
 
 /**
  * @ORM\Entity
@@ -61,8 +62,8 @@ abstract class BaseEntity
      */
     public function setUpdatedAt()
     {
-        $this->updatedAt = new \DateTime();
-        $this->createdAt = $this->createdAt || $this->updatedAt;
+        $this->updatedAt = new DateTime();
+        $this->createdAt = $this->createdAt ?: $this->updatedAt;
         return $this;
     }
 
