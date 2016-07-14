@@ -70,16 +70,16 @@ var authenticationManager = {
         }
     },
     registerSuccess: function(soapResponse){
-        console.log("success");
+        alert("New user created. You may now log in.");
     },
     registerError: function(soapResponse){
-        console.log("error");
+        alert("There was an error creating the new user.");
     },
     loginSuccess: function(soapResponse){
         console.log("success");
     },
     loginError: function(soapResponse){
-        console.log("error");
+        alert("There was an error while logging in");
     },
     soapCall: function(method, data, successCallback, errorCallback){
         $.soap({
