@@ -71,6 +71,8 @@ var authenticationManager = {
     },
     registerSuccess: function(soapResponse){
         alert("New user created. You may now log in.");
+        $('#authentication_username').val('');
+        $('#authentication_password').val('');
     },
     registerError: function(soapResponse){
         alert("There was an error creating the new user.");
