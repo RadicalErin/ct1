@@ -28,13 +28,14 @@ class AuthenticationService
     {
         if($result =  $this->em->getRepository("AppBundle:User")->findOneBy(array('username' => $submittedName))){
             try {
-                if($result->getPassword = $submittedPassword){
+                if($result->getPassword() == $submittedPassword){
                     return true;
                 }
             } catch (\Exception $e) {
                 return trigger_error("An error occurred while logging in", E_USER_ERROR);
             }
         }
+        //echo($submittedName . " " . $submittedPassword . " " . $result.getPassword());
         return trigger_error("Unable to verify user/password combination", E_USER_ERROR);
     }
 

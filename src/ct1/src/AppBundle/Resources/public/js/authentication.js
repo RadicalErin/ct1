@@ -14,6 +14,11 @@ var authenticationManager = {
         }
     },
     unauthenticatedSetup: function(){
+        $('form[name="logout"]').hide();
+        $('form[name="authentication"]').show();
+        //clear on click events to ensure no duplicate calls
+        $('#authentication_Register').unbind("click");
+        $('#authentication_Login').unbind("click");
         $('#authentication_Register').on("click", function(e){
             e.preventDefault();
             authenticationManager.checkFormReady(
@@ -56,8 +61,15 @@ var authenticationManager = {
             );
             return false;
         });
+        $('#logout_Logout').on("click", function(e){
+            e.preventDefault();
+            //we dont need to call the backend for this, cause tracking hasn't been set up
+            authenticationManager.logoutSuccess();
+        });
     },
     authenticatedSetup: function(){
+        $('form[name="logout"]').show();
+        $('form[name="authentication"]').hide();
     },
     checkFormReady: function(success, fail){
         if(
@@ -71,17 +83,26 @@ var authenticationManager = {
     },
     registerSuccess: function(soapResponse){
         alert("New user created. You may now log in.");
-        $('#authentication_username').val('');
-        $('#authentication_password').val('');
+        authenticationManager.clearLoginForm();
     },
     registerError: function(soapResponse){
         alert("There was an error creating the new user.");
     },
     loginSuccess: function(soapResponse){
-        console.log("success");
+        if(soapResponse.content.documentElement.textContent == "true"){
+            authenticationManager.config.user = $('#authentication_username').val();
+            authenticationManager.authenticatedSetup();
+        } else {
+            authenticationManager.loginError(soapResponse);
+        }
     },
     loginError: function(soapResponse){
-        alert("There was an error while logging in");
+        alert(soapResponse.content.documentElement.textContent);
+    },
+    logoutSuccess: function(){
+        authenticationManager.config.user = null;
+        authenticationManager.clearLoginForm();
+        authenticationManager.unauthenticatedSetup();
     },
     soapCall: function(method, data, successCallback, errorCallback){
         $.soap({
@@ -95,6 +116,10 @@ var authenticationManager = {
             success: successCallback,
             error: errorCallback
         });
+    },
+    clearLoginForm: function(){
+        $('#authentication_username').val('');
+        $('#authentication_password').val('');
     }
 }
 
