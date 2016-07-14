@@ -12,6 +12,7 @@ class AuthenticationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setAction('javascript:void(0);')
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
             ->add('Register', SubmitType::class)

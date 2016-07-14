@@ -18,20 +18,16 @@ var authenticationManager = {
             e.preventDefault();
             authenticationManager.checkFormReady(
                 function(){
-                    $.soap({
-                        url: 'http://ct1.loc/app.php/api/soap/check',
-                        method: 'newUser',
-                        SOAPAction: 'http://ct1.loc/app.php/api/soap/check#newUser',
-                        namespaceQualifier: 'tns',
-                        namespaceURL: 'http://ct1.loc/app.php/api/soap/check',
-                        appendMethodToURL: false,
-                        data: {
-                            submittedName: $('#authentication_username').val(),
-                            submittedPassword: $('#authentication_password').val()
-                        },
-                        success: authenticationManager.registerSuccess,
-                        error: authenticationManager.registerError
-                    });
+                    data = {
+                        submittedName: $('#authentication_username').val(),
+                        submittedPassword: $('#authentication_password').val()
+                    };
+                    authenticationManager.soapCall(
+                        'newUser',
+                        data,
+                        authenticationManager.registerSuccess,
+                        authenticationManager.registerError
+                    );
                 },
                 function(){
                     alert("Fill out the form before submitting");
@@ -43,7 +39,16 @@ var authenticationManager = {
             e.preventDefault();
             authenticationManager.checkFormReady(
                 function(){
-                    console.log("ready");
+                    data = {
+                        submittedName: $('#authentication_username').val(),
+                        submittedPassword: $('#authentication_password').val()
+                    };
+                    authenticationManager.soapCall(
+                        'logIn',
+                        data,
+                        authenticationManager.loginSuccess,
+                        authenticationManager.loginError
+                    );
                 },
                 function(){
                     console.log("not ready");
@@ -75,6 +80,19 @@ var authenticationManager = {
     },
     loginError: function(soapResponse){
         console.log("error");
+    },
+    soapCall: function(method, data, successCallback, errorCallback){
+        $.soap({
+            url: 'http://ct1.loc/app.php/api/soap/check',
+            method: method,
+            SOAPAction: 'http://ct1.loc/app.php/api/soap/check#'+method,
+            namespaceQualifier: 'tns',
+            namespaceURL: 'http://ct1.loc/app.php/api/soap/check',
+            appendMethodToURL: false,
+            data: data,
+            success: successCallback,
+            error: errorCallback
+        });
     }
 }
 

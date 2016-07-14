@@ -26,15 +26,16 @@ class AuthenticationService
      */
     public function logIn($submittedName, $submittedPassword)
     {
-        $user = $this->em->getRepository("AppBundle:User")->loadUserByUsername($submittedName);
-        if(!$user)
-        {
-            throw new UsernameNotFoundException("invalid user name provided");
-        } else {
-            $token = new UsernamePasswordToken($user, $submittedPassword, "publicfw", $user->getRoles());
-            $this->container->get('security.token_storage')->setToken($token);
-            return $token;
+        if($result =  $this->em->getRepository("AppBundle:User")->findOneBy(array('username' => $submittedName))){
+            try {
+                if($result->getPassword = $submittedPassword){
+                    return true;
+                }
+            } catch (\Exception $e) {
+                return trigger_error("An error occurred while logging in", E_USER_ERROR);
+            }
         }
+        return trigger_error("Unable to verify user/password combination", E_USER_ERROR);
     }
 
     /**
@@ -43,7 +44,7 @@ class AuthenticationService
      */
     public function logOut($userName)
     {
-        $this->container->get('security.token_storage')->setToken(null);
+        //at the moment, we aren't really doing this properly, so there's nothing to 'do'
         return true;
     }
 
