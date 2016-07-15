@@ -13,7 +13,6 @@ class RestController extends FOSRestController
     /**
      * @param Request $request
      * @return Response
-     * @Get("/new-post-action")
      */
     public function newPostAction(Request $request)
     {
