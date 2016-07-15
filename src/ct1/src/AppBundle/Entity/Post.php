@@ -40,5 +40,6 @@ class Post extends BaseEntity
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 }
