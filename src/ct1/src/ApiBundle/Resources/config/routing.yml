@@ -1,3 +1,6 @@
 api_soap_check:
     path: /soap/check
     defaults: { _controller: ApiBundle:Soap:check }
+api_rest_submit:
+    path: /rest/submit
+    defaults: { _controller: ApiBundle:Rest:newPost }

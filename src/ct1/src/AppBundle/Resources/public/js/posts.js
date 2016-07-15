@@ -9,7 +9,7 @@ var postManager = {
     },
     submitNewPost: function(){
         $.ajax({
-            url: 'dunno',
+            url: 'http://ct1.loc/app.php/api/rest/submit',
             data: {
                 user: authenticationManager.config.user,
                 content: $('#post_Content').val()
@@ -18,7 +18,7 @@ var postManager = {
             dataTye: "json"
         })
         .done(function(result){
-            //put new post content in place
+            postManager.updatePostWindow(result);
         })
         .fail(function(xhr, status, err){
             alert("Unable to post the message");
