@@ -25,6 +25,8 @@ var postManager = {
         });
     },
     updatePostWindow: function(newHtml){
+        $('.left-box').html(newHtml);
+        postManager.init();
     },
     clearForm: function(){
         $('#post_Content').val('');

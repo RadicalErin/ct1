@@ -7,6 +7,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Post;
+use AppBundle\Form\Type\PostType;
 
 class RestController extends FOSRestController
 {
@@ -16,6 +17,27 @@ class RestController extends FOSRestController
      */
     public function newPostAction(Request $request)
     {
-        echo($request); die();
+        $em = $this->getDoctrine()->getManager();
+        if(
+            empty($request->get("user")) ||
+            !$em->getRepository("AppBundle:User")->findOneBy(array('username' => $request->get("user")))
+        ){
+            return new Response("error");
+        }
+
+        $newPost = new Post();
+        $newPost
+            ->setAuthor($em->getRepository("AppBundle:User")->findOneBy(array('username' => $request->get("user"))))
+            ->setText($request->get("content"));
+        $em->persist($newPost);
+        $em->flush();
+
+        $postForm = $this->createForm(PostType::class);
+        return $this->render(
+            "@App/posts.html.twig",
+            array(
+                'post_form' => $postForm->createView()
+            )
+        );
     }
 }
