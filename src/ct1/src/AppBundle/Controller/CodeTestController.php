@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\AuthenticationType;
 use AppBundle\Form\Type\LogoutType;
+use AppBundle\Form\Type\PostType;
 
 class CodeTestController extends Controller
 {
@@ -20,19 +21,26 @@ class CodeTestController extends Controller
         $authenForm->handleRequest($request);
         $logoutForm = $this->createForm(LogoutType::class);
         $logoutForm->handleRequest($request);
+        $postForm = $this->createForm(PostType::class);
+        $postForm->handleRequest($request);
 
         if(
             ($authenForm->isSubmitted() && $authenForm->isValid()) ||
-            ($logoutForm->isSubmitted() && $logoutForm->isValid())
+            ($logoutForm->isSubmitted() && $logoutForm->isValid()) ||
+            ($postForm->isSubmitted() && $postForm->isValid())
         ){
             return new Response("potato");
         }
+
+        $posts = null;
 
         return $this->render(
             "@App/index.html.twig",
             array(
                 'authen_form' => $authenForm->createView(),
-                'logout_form' => $logoutForm->createView()
+                'logout_form' => $logoutForm->createView(),
+                'posts' => $posts,
+                'post_form' => $postForm->createView()
             )
         );
     }
